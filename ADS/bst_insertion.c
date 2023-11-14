@@ -9,29 +9,16 @@ struct node* create()
     struct node* new_node=(struct node*)malloc(sizeof(struct node));
     return new_node;
 }
-void insert(struct node* n,struct node* r)
+struct node* insert(struct node* n,struct node* r)
 {
-    if(root==NULL)
-    {
-        root=n;
-    }
-    else{
         if((n->data < r->data )&& r->left!=NULL){
-            insert(n,r->left);
+            r->left=(n,r->left);
         }
-        else if((n->data > r->data)&& r->rigth!=NULL){
-            insert(n,r->rigth);
+        else if((n->data > r->data)&& r->rigth!=NULL)
+        {
+            r->rigth=(n,r->rigth);
         }
-        else{
-            if((n->data < r->data ))
-            {
-                r->left=n;
-                return;
-            }
-            else
-                r->rigth=n;
-         }
-    }
+        return n;
 }
 void inorder(struct node *r)
 {
@@ -45,6 +32,11 @@ void inorder(struct node *r)
 void main()
 {
     int i=1;
+    struct node *new=create();
+        new->data=10;
+        new->left=NULL;
+        new->rigth=NULL;
+        root=insert(new,root);
     while(i<=5)
     {
         int a;
@@ -56,7 +48,6 @@ void main()
         new->rigth=NULL;
         insert(new,root);
         i++;
-    }  printf("hi");
-    printf("hi");
+    }  
     inorder(root);
 }
