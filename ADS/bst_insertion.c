@@ -56,7 +56,6 @@ void main()
         new->rigth=NULL;
         insert(new,root);
         i++;
-    }  printf("hi");
-    printf("hi");
+    }  
     inorder(root);
 }
