@@ -22,8 +22,21 @@ void insert_beg()
     scanf("%d",&d);
     struct node * new=create();
     new->data=d;
-    new->next=head;
-    head=new;
+    if(head==NULL)
+    {
+        head=new;
+        new->next=head;
+    }
+    else
+    {
+        temp=head;
+        while(temp->next!=head)
+            temp=temp->next;
+        new->next=head;
+        head=new;
+        temp->next=head;
+
+    }
 }
 void insert_pos()
 {
@@ -33,11 +46,14 @@ void insert_pos()
     printf("\n Enter the position to insert:");
     scanf("%d",&p);
     temp=head;
-    j=0;
-    while(temp!=NULL)
+    j=1;
+    if(head!=NULL)
     {
-        temp=temp->next;
-        j++;
+        while(temp->next!=head)
+        {
+            temp=temp->next;
+            j++;
+        }
     }
      if(p<=0 || p>j+1)
     {
@@ -46,10 +62,20 @@ void insert_pos()
     }
     struct node * new=create();
     new->data=d;
-    if(head==NULL || p==1)
+    if(head==NULL)
     {
+        head=new;
+        new->next=head;
+        return;
+    }
+    if(p==1)
+    {
+        temp=head;
+        while(temp->next!=head)
+            temp=temp->next;
         new->next=head;
         head=new;
+        temp->next=head;
         return;
     }
     temp=head;
@@ -68,15 +94,15 @@ void insert_end()
     scanf("%d",&d);
     struct node * new=create();
     new->data=d;
-    new->next=NULL;
     if(head==NULL)
     {
         head=new;
+        new->next=head;
         return;
     }
-        
+    new->next=head;
     temp=head;
-    while(temp->next!=NULL)
+    while(temp->next!=head)
     {
         temp=temp->next;
     }
@@ -84,6 +110,7 @@ void insert_end()
 }
 void delete_beg()
 {
+    struct node* del=head;
     if(head==NULL)
     {
         printf("\n Linked list is empty");
@@ -91,8 +118,16 @@ void delete_beg()
     }
     int d=head->data;
     temp=head;
-    head=head->next;
-    free(temp);
+    if(head->next==head)
+        head=NULL;
+    else
+    {
+        while(temp->next!=head)
+            temp=temp->next;
+        head=head->next;
+        temp->next=head;
+    }
+    free(del);
     printf("\n %d deleted",d);
 }
 void delete_pos()
@@ -101,9 +136,14 @@ void delete_pos()
     struct node* del;
     printf("\n Enter the position to delete:");
     scanf("%d",&p);
-    j=0;
+    j=1;
     temp=head;
-    while(temp!=NULL)
+    if(head==NULL)
+    {
+        printf("\n Linked list is empty");
+        return;
+    }
+    while(temp->next!=head)
     {
         temp=temp->next;
         j++;
@@ -113,11 +153,7 @@ void delete_pos()
         printf("\n Invalid Position");
         return;
     }
-    if(head==NULL)
-    {
-        printf("\n Linked list is empty");
-        return;
-    }
+
     i=2;
     del=head;
     //here we stop iteration with previous node
@@ -143,7 +179,18 @@ void delete_pos()
     }
     d=del->data;
     if(p==1)
-        head=del->next;
+    {   
+        if(head->next==head)
+            head=NULL;
+        else
+        {
+            temp=head;
+            while(temp->next!=head)
+                temp=temp->next;
+            head=del->next;
+            temp->next=head;
+        }
+    }
     else
         temp->next=del->next;
     free(del);
@@ -159,16 +206,22 @@ void delete_end()
         printf("\n Linked list is empty");
         return;
     }
-    if(temp->next!=NULL)
+    if(temp->next==head)
     {
-        while((temp->next)->next!=NULL)
+        head=NULL;
+        d=del->data;
+        free(del);
+        printf("\n %d is deleted",d);
+        return;
+    }
+    if(temp->next!=head)
+    {
+        while((temp->next)->next!=head)
             temp=temp->next;
         del=temp->next;
     }
-    else
-        head=NULL;
     d=del->data;
-    temp->next=NULL;
+    temp->next=head;
     free(del);
     printf("\n %d is deleted",d);
 }
@@ -178,7 +231,7 @@ void search()
     printf("\n Enter the node to search:");
     scanf("%d",&d);
     temp=head;
-    while(temp!=NULL)
+    while(temp->next!=head)
     {
         if(temp->data==d)
         {
@@ -187,7 +240,9 @@ void search()
         }
         temp=temp->next;
     }
-    if(temp==NULL)
+    if(temp->data==d)//for last node
+        printf("\n %d is presented in linked list",d);
+    else
         printf("%d is not presented in linked list",d);
 }
 void display()
@@ -198,10 +253,11 @@ void display()
     }
     else{
         temp=head;
-        while(temp!=NULL){
+        while(temp->next!=head){
             printf("%d ",temp->data);
             temp=temp->next;
         }
+        printf("%d ",temp->data);
     }
 }
 void main()

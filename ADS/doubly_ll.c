@@ -3,7 +3,7 @@
 struct node
 {
     int data;
-    struct node* next;
+    struct node* next,*prev;
 }*head,*temp;
 struct node * create()
 {
@@ -23,6 +23,7 @@ void insert_beg()
     struct node * new=create();
     new->data=d;
     new->next=head;
+    new->prev=NULL;
     head=new;
 }
 void insert_pos()
@@ -49,6 +50,7 @@ void insert_pos()
     if(head==NULL || p==1)
     {
         new->next=head;
+        new->prev=NULL;
         head=new;
         return;
     }
@@ -58,8 +60,12 @@ void insert_pos()
         temp=temp->next;
         i++;
     }
+    new->prev=temp;
     new->next=temp->next;
+    if(temp->next!=NULL)
+        (temp->next)->prev=new;
     temp->next=new;
+
 }
 void insert_end()
 {
@@ -71,15 +77,16 @@ void insert_end()
     new->next=NULL;
     if(head==NULL)
     {
+        new->prev=NULL;
         head=new;
         return;
     }
-        
     temp=head;
     while(temp->next!=NULL)
     {
         temp=temp->next;
     }
+    new->prev=temp;
     temp->next=new;
 }
 void delete_beg()
@@ -92,6 +99,7 @@ void delete_beg()
     int d=head->data;
     temp=head;
     head=head->next;
+    head->prev=NULL;
     free(temp);
     printf("\n %d deleted",d);
 }
@@ -119,33 +127,50 @@ void delete_pos()
         return;
     }
     i=2;
-    del=head;
+    temp=head;
+    //here we stop iteration with deleting node
+    //del=head;
+    /*while(i<=p)
+    {
+        del=del->next;
+        i++;
+    }
+    d=del->data;
+    if(p==1)
+    {
+        head=del->next;
+        head->prev=NULL;
+    }
+    else
+    {
+        (del->prev)->next=del->next;
+        (del->next)->prev=del->prev;
+    }*/
     //here we stop iteration with previous node
-    //temp=head
-    /*while(i<p)
+    while(i<p)
     {
         temp=temp->next;
         i++;
     }
-    del=temp->next;
-    d=del->data;
     if(p==1)
-        head=del->next;
-    else
-        temp->next=del->next;
-    */
-    //here we stop iteration with deleting node
-    while(i<=p)
     {
-        temp=del;
+        del=head;
+        if(head->next==NULL)
+            head=NULL;
+        else
+        {
+            head=temp->next;
+            head->prev=NULL;
+        }
+    }
+    else
+    {
         del=temp->next;
-        i++;
+        temp->next=del->next;
+        if(del->next!=NULL)
+            (del->next)->prev=temp;//(del->next)->prev=del->prev
     }
     d=del->data;
-    if(p==1)
-        head=del->next;
-    else
-        temp->next=del->next;
     free(del);
     printf("\n %d deleted",d);
 }
