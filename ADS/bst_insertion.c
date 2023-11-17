@@ -58,22 +58,23 @@ void postorder(struct node *r)
         inorder(r->rigth);
     printf("%d ",r->data);
 }
-int search(struct node *r,int n,int k)
+struct node* search(struct node *r,int n,struct node *r1)
 {
     if(r->data==n)
     {
-        k=1;
-        return k;
+        r1=r;
+        return r1;
     }
     if(r->left!=NULL)
-        k=search(r->left,n,k);
+        r1=search(r->left,n,r1);
     if(r->rigth!=NULL)
-        k=search(r->rigth,n,k);
-    return k;
+        r1=search(r->rigth,n,r1);
+    return r1;
 }
 void main()
 { 
-    int ch,op,a,k;
+    int ch,op,a;
+    struct node* k;
     dis:
     printf("\n 1.Insert \n 2.Delete \n 3.Traversal \n 4.Search \n 5.Exit");
     printf("\n Enter your choice :");
@@ -114,9 +115,9 @@ void main()
         case 4:
                 printf("\n Enter the node to search:");
                 scanf("%d",&a);
-                k=search(root,a,0);
-                if(k==1)
-                    printf("\n %d is presented",a);
+                k=search(root,a,NULL);
+                if(k!=NULL)
+                    printf("\n %d is presented",k->data);
                 else   
                     printf("\n %d is not presented",a);
                 break;
