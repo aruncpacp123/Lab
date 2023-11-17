@@ -89,6 +89,8 @@ void main()
                 new->rigth=NULL;
                 insert(new,root);
                 break;
+        case 2:
+                break;
         case 3:
                 printf("\n 1.Inorder \n 2.Preorder \n 3.Postorder");
                 printf("\n Enter your option :");
