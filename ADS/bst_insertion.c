@@ -64,16 +64,22 @@ void postorder(struct node *r)
         inorder(r->rigth);
     printf("%d ",r->data);
 }
-/*struct node* search(struct node *r,int n)
+/*
+int search(struct node *r,int n,int k)//In fn call search(root,a,0)
 {
     if(r->data==n)
-        return r;
+    {
+        k=1;
+        return k;
+    }
     if(r->left!=NULL)
-        search(r->left,n);
+        k=search(r->left,n,k);
     if(r->rigth!=NULL)
-        search(r->rigth,n);
-}*/
-struct node* search(struct node *r,int n,struct node *r1)//in fn call search(root,n,NULL);
+        k=search(r->rigth,n,k);
+    return k;
+}
+*/
+struct node* search(struct node *r,int n,struct node *r1)
 {
     if(r->data==n)
     {
@@ -82,9 +88,11 @@ struct node* search(struct node *r,int n,struct node *r1)//in fn call search(roo
     }
     if(r->left!=NULL)
         r1=search(r->left,n,r1);
-    else if(r->rigth!=NULL)
+    if(r->rigth!=NULL)
         r1=search(r->rigth,n,r1);
+    return r1;
 }
+
 void main()
 { 
     int ch,op,a;
