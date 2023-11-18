@@ -86,7 +86,7 @@ struct node* delete2(struct node* r,struct node* n)//Inorder Predecessor
     {
         if(r->data > n->data)
             n=r;
-        n=delete2(r->rigth,r);
+        n=delete2(r->rigth,n);
     }
     return n;
 }
@@ -102,7 +102,7 @@ struct node* delete3(struct node* r,struct node* n)//Inorder Successor
     {
         if(r->data < n->data)
             n=r;
-        n=delete3(r->rigth,r);
+        n=delete3(r->rigth,n);
     }
     return n;
 }
