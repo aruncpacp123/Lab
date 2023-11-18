@@ -74,76 +74,13 @@ struct node* search(struct node *r,int n,struct node *r1)
         r1=search(r->rigth,n,r1);
     return r1;
 }
-/*
-struct node* delete2(struct node* r,struct node* n)
-{
-    if(r==NULL)
-    {
-        return n;
-    }
-    if(r->left!=NULL)
-    {
-        if(r->data>n->data)
-        {
-            n=delete2(r->left,n);
-        }
-        else
-        {
-            n=delete2(r->left,r);
-        }
-    }
-    if(r->rigth!=NULL)
-    {
-        if(r->data>n->data)
-        {
-            n=delete2(r->rigth,n);
-        }
-        else
-        {
-            n=delete2(r->rigth,r);
-        }
-    }
-    return n;
-}
-struct node* delete3(struct node* r,struct node* n)
-{
-    if(r==NULL)
-    {
-        return n;
-    }
-    if(r->left!=NULL)
-    {
-        if(r->data<n->data)
-        {
-            n=delete3(r->left,n);
-        }
-        else
-        {
-            n=delete3(r->left,r);
-        }
-    }
-    if(r->rigth!=NULL)
-    {
-        if(r->data<n->data)
-        {
-            n=delete3(r->rigth,n);
-        }
-        else
-        {
-            n=delete3(r->rigth,r);
-        }
-    }
-    return n;
-}
-*/
-
 struct node* delete2(struct node* r,struct node* n)//Inorder Predecessor
 {
-    if(r->left!=NULL)
+    if(r->left!=NULL)//r!=NULL
     {
         if(r->data > n->data)
             n=r;
-        delete2(r->left,n);
+        n=delete2(r->left,n);
     }
     if(r->rigth!=NULL)
     {
@@ -159,7 +96,7 @@ struct node* delete3(struct node* r,struct node* n)//Inorder Successor
     {
         if(r->data < n->data)
             n=r;
-        delete3(r->left,n);
+        n=delete3(r->left,n);
     }
     if(r->rigth!=NULL)
     {
@@ -200,7 +137,7 @@ void delete(struct node* k,struct node* r)
             }
         }        
     }
-    else if((k->left==NULL && k->rigth!=NULL)||(k->left!=NULL && k->rigth==NULL))
+    else if((k->left==NULL && k->rigth!=NULL && (k->rigth)->left==NULL && (k->rigth)->rigth==NULL)||(k->left!=NULL && k->rigth==NULL && (k->left)->left==NULL && (k->left)->rigth==NULL))
     {
         if(k->left==NULL && k->rigth!=NULL)
         {
@@ -305,3 +242,66 @@ void main()
     }
     goto dis;
 }
+
+/*
+struct node* delete2(struct node* r,struct node* n)
+{
+    if(r==NULL)
+    {
+        return n;
+    }
+    if(r->left!=NULL)
+    {
+        if(r->data>n->data)
+        {
+            n=delete2(r->left,n);
+        }
+        else
+        {
+            n=delete2(r->left,r);
+        }
+    }
+    if(r->rigth!=NULL)
+    {
+        if(r->data>n->data)
+        {
+            n=delete2(r->rigth,n);
+        }
+        else
+        {
+            n=delete2(r->rigth,r);
+        }
+    }
+    return n;
+}
+struct node* delete3(struct node* r,struct node* n)
+{
+    if(r==NULL)
+    {
+        return n;
+    }
+    if(r->left!=NULL)
+    {
+        if(r->data<n->data)
+        {
+            n=delete3(r->left,n);
+        }
+        else
+        {
+            n=delete3(r->left,r);
+        }
+    }
+    if(r->rigth!=NULL)
+    {
+        if(r->data<n->data)
+        {
+            n=delete3(r->rigth,n);
+        }
+        else
+        {
+            n=delete3(r->rigth,r);
+        }
+    }
+    return n;
+}
+*/
