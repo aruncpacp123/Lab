@@ -39,6 +39,8 @@ void insert(struct node* n,struct node* r)
 }
 void inorder(struct node *r)
 {
+    if(r==NULL)
+        return;
     if(r->left!=NULL)
         inorder(r->left);
     printf("%d ",r->data);
@@ -47,6 +49,8 @@ void inorder(struct node *r)
 }
 void preorder(struct node *r)
 {
+    if(r==NULL)
+        return;
     printf("%d ",r->data);
     if(r->left!=NULL)
         preorder(r->left);
@@ -55,6 +59,8 @@ void preorder(struct node *r)
 }
 void postorder(struct node *r)
 {
+    if(r==NULL)
+        return;
     if(r->left!=NULL)
         postorder(r->left);
     if(r->rigth!=NULL)
@@ -63,6 +69,8 @@ void postorder(struct node *r)
 }
 struct node* search(struct node *r,int n,struct node *r1)
 {
+    if(r==NULL)
+        return NULL;
     if(r->data==n)
     {
         r1=r;
@@ -74,67 +82,68 @@ struct node* search(struct node *r,int n,struct node *r1)
         r1=search(r->rigth,n,r1);
     return r1;
 }
+/*
+printf("\n%d",r->data);
+printf("\n%d",n->data);
+printf("\n");
+*/
 struct node* delete2(struct node* r,struct node* n)//Inorder Predecessor
 {
-    if(r->left!=NULL)//r!=NULL
-    {
-        if(r->data > n->data)
-            n=r;
+    if(r->data >= n->data)
+        n=r;
+    if(r->left!=NULL)
         n=delete2(r->left,n);
-    }
     if(r->rigth!=NULL)
-    {
-        if(r->data > n->data)
-            n=r;
         n=delete2(r->rigth,n);
-    }
     return n;
 }
 struct node* delete3(struct node* r,struct node* n)//Inorder Successor
 {
+    if(r->data <= n->data)
+        n=r;
     if(r->left!=NULL)
-    {
-        if(r->data < n->data)
-            n=r;
         n=delete3(r->left,n);
-    }
     if(r->rigth!=NULL)
-    {
-        if(r->data < n->data)
-            n=r;
         n=delete3(r->rigth,n);
-    }
     return n;
 }
 void delete(struct node* k,struct node* r)
 {
-    int d;
+    int d,c;
     struct node* m;
     if(root==NULL)
     {
         printf("\n Underflow");
         return;
     }
+    if(k->left==NULL && k->rigth==NULL && root==k)
+    {
+        root=NULL;
+        free(k);
+        return;
+    }
     if(k->left==NULL && k->rigth==NULL)
     {
-        if(k->data<r->data && r->left!=k)
+        if(k->data <= r->data && r->left!=k)
             delete(k,r->left);
-        else if(k->data>r->data && r->rigth!=k)
+        else if(k->data > r->data && r->rigth!=k)
             delete(k,r->rigth);
         else
         {
+            //printf("\n %d %d hi",k->data,r->data);
             if(r->left==k)
             {
                 r->left=NULL;
-                printf("%d is deleted ",k->data);
+                printf("\n%d is deleted ",k->data);
                 free(k);
             }
             else if(r->rigth==k)
             {
                 r->rigth=NULL;
-                printf("%d is deleted ",k->data);
+                printf("\n%d is deleted ",k->data);
                 free(k);
             }
+            
         }        
     }
     else if((k->left==NULL && k->rigth!=NULL && (k->rigth)->left==NULL && (k->rigth)->rigth==NULL)||(k->left!=NULL && k->rigth==NULL && (k->left)->left==NULL && (k->left)->rigth==NULL))
@@ -158,20 +167,24 @@ void delete(struct node* k,struct node* r)
     }
     else
     {
-        d=k->data;
+        c=k->data;
         if(k->left!=NULL)
         {
             m=delete2(k->left,k->left);
-            k->data=m->data;
-            delete(m,root);
+            d=m->data;
+            //printf("\n %dhello ",m->data);
+            delete(m,root);//if i write k->data=m->data before this line then root changes and when calling delete()there come == condition and goes to else 
+            k->data=d;//part and on tht fn m and k denotes same value;so either wite k->data=d before delete(m,root) and make <= in delete()'s first
+            //if section that is if inside the condition of leaf node
         }
         else
         {
             m=delete3(k->rigth,k->rigth);
-            k->data=m->data;
+            d=m->data;
             delete(m,root);
+            k->data=d;
         }
-        printf("%d is deleted ",d);
+        printf("\n%d is deleted ",c);
     }
 }
 void main()
@@ -196,6 +209,11 @@ void main()
         case 2:
                 printf("\n Enter the node to delete:");
                 scanf("%d",&a);
+                if(root==NULL)
+                {
+                    printf("\nUnderflow");
+                    break;
+                }
                 k=NULL;
                 k=search(root,a,NULL);
                 if(k==NULL)  
@@ -228,6 +246,11 @@ void main()
         case 4:
                 printf("\n Enter the node to search:");
                 scanf("%d",&a);
+                if(root==NULL)
+                {
+                    printf("\nEmpty Tree");
+                    break;
+                }
                 k=search(root,a,NULL);
                 k=NULL;
                 if(k!=NULL)
