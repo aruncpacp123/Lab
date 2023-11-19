@@ -149,7 +149,7 @@ void delete(struct node* k,struct node* r,int f)
             
         }        
     }
-    else if((k->left==NULL && k->rigth!=NULL && (k->rigth)->left==NULL && (k->rigth)->rigth==NULL)||(k->left!=NULL && k->rigth==NULL && (k->left)->left==NULL && (k->left)->rigth==NULL))
+    /*else if((k->left==NULL && k->rigth!=NULL && (k->rigth)->left==NULL && (k->rigth)->rigth==NULL)||(k->left!=NULL && k->rigth==NULL && (k->left)->left==NULL && (k->left)->rigth==NULL))
     {
         if(k->left==NULL && k->rigth!=NULL)
         {
@@ -167,7 +167,7 @@ void delete(struct node* k,struct node* r,int f)
             k->left=NULL;
             printf("%d is deleted ",d);
         }
-    }
+    }*/
     else
     {
         c=k->data;
