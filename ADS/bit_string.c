@@ -4,7 +4,7 @@
 void main()
 {
     int a,b,c,i,j;
-
+    void display(int a[],int n);
     printf("\n Enter number of elements in the universal set:");
     scanf("%d",&a);
     int *n1=(int *)malloc(sizeof(int));
@@ -15,6 +15,7 @@ void main()
     char br[a];
     char cr[a];
     char dr[a];
+    char er[a];
     printf("\n Enter number of elements in the first set:");
     scanf("%d",&b);
     printf("\n Enter the set1:");
@@ -112,6 +113,14 @@ void main()
     {
         dr[i]=ar[i]&br[i];//intersection AND
     }
+    for(i=0;i<a;i++)
+    {
+        if(ar[i]!=br[i]&& br[i]==0){
+            er[i]=1;//A-B
+        }
+        else
+            er[i]=0;
+    }
     printf("\n Union:");
     for(i=0;i<a;i++)
         printf("%d ",cr[i]);
@@ -126,4 +135,9 @@ void main()
     for(i=0;i<a;i++)
         if(dr[i]==1)
             printf("%d ",n1[i]);
+    printf("\n Set1-Set2:");
+    for(i=0;i<a;i++)
+        if(er[i]==1)
+            printf("%d ",n1[i]);
+    
 }
