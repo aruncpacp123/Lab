@@ -23,6 +23,6 @@ for i in c1:
     for j in c2:
         if(i==j):
             k=i
-            continue
+            break
     if(i!=k):
         print(i)
