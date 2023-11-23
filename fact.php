@@ -14,7 +14,7 @@ for($i=1;$i<$n;$i++)
 <body>
     <form action="fact.php" method="post">
         Enter a number:
-        <input type="text" value=<?=$n?> readonly>
+        <input type="text" value=<?=$n?> disabled>
         <br><br><br>
         Result:
         <input type="text" value=<?=$fact?> readonly>
