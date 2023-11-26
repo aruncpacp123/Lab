@@ -83,9 +83,14 @@ void bfs(int edge[][2],int m,int v[],int n,int e)
     while(!isEmpty())
     {
         x=pop();
+        if(!visited(x,v,n))
+        {
+            printf("%d ",x);
+            v[x]=1;
+        }
         if(unvisited(x,edge,m,v,n))
         {
-            
+            bfs(edge,m,v,n,x);
         }
     }
     return;
