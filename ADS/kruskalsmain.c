@@ -159,7 +159,7 @@ void main()
     printf("\n Enter number of edges :");
     scanf("%d",&M);
     int edge[M][3];
-    int adj[N+1][N+1];
+    //int adj[N+1][N+1];
     int v[N+1];
     for(i=0;i<N+1;i++)
         v[i]=0;
@@ -192,3 +192,4 @@ void main()
     printf("\n minimum cost=%d",k);
 }
 //in this program validate whether resultant graph has only n-1 edges and also in first step remove loops and this progam is for undirected graph
+//try push with linking same repository with different local folders and push to main
