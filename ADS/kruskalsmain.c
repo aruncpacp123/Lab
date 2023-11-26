@@ -191,3 +191,4 @@ void main()
     }
     printf("\n minimum cost=%d",k);
 }
+//in this program validate whether resultant graph has only n-1 edges and also in first step remove loops and this progam is for undirected graph
