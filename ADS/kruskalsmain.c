@@ -9,17 +9,14 @@ int pop()
 {
     return ar[top--];
 }
-int check(int e)
+int check(int e,int v[],int n)
 {
-    int i;
-    for(i=0;i<=top;i++)
-    {
-        if(e==ar[i])
-            return 0;
-    }
-    return 1;
+    if(v[e]==1)
+        return 0;
+    else
+        return 1;
 }
-void adj(int start,int edger[][3],int k)
+void adj(int start,int edger[][3],int k,int v[],int n)
 {
     int i,j;
     for(i=0;i<k;i++)
@@ -30,21 +27,23 @@ void adj(int start,int edger[][3],int k)
             if(edger[i][0]==start)
             {
                 
-                if(check(edger[i][1]))
+                if(check(edger[i][1],v,n))
                 {   
                     push(edger[i][1]);
+                    v[edger[i][1]]=1;
                     d=1;
-                    return adj(edger[i][1],edger,k);
+                    return adj(edger[i][1],edger,k,v,n);
                 }
             }
             else
             {
                 
-                if(check(edger[i][0]))
+                if(check(edger[i][0],v,n))
                 {
                     push(edger[i][0]);
+                    v[edger[i][0]]=1;
                     d=1;
-                    return adj(edger[i][0],edger,k);
+                    return adj(edger[i][0],edger,k,v,n);
                 }
             }
         }
@@ -54,7 +53,7 @@ void adj(int start,int edger[][3],int k)
     return;
     
 }
-int kruskal(int edge[][3],int m,int n,int res[][n+1],int edger[][3])
+int kruskal(int edge[][3],int m,int n,int res[][n+1],int edger[][3],int v[])
 {
     int i,j,temp1;
     for(i=0;i<m-1;i++)
@@ -79,10 +78,12 @@ int kruskal(int edge[][3],int m,int n,int res[][n+1],int edger[][3])
         for(j=1;j<=n;j++)
             res[i][j]=0;
     int cost=0,x,y,c,a,b,d,k,l;
-    int start,end,e,start2;
+    int start,end,e;
     for(i=0,k=0;i<m;i++)
     {
         top=-1;
+        for(i=0;i<n+1;i++)
+            v[i]=0;
         x=edge[i][0];
         y=edge[i][1];
         c=edge[i][2];
@@ -91,22 +92,17 @@ int kruskal(int edge[][3],int m,int n,int res[][n+1],int edger[][3])
             start=x;
             end=y;
             push(start);
-            adj(start,edger,k);
+            v[start]=1;
+            adj(start,edger,k,v,n);
             d=0;
             while(top>=0)
             {
-                start2=pop();
-                if(start2==end)
+                start=pop();
+                adj(start,edger,k,v,n);
+                if(start==end)
                 {
                     d=1;
                     break;
-                }
-                if(top>=0)
-                {
-                    start=pop();
-                    push(start2);
-                    push(start);
-                    adj(start,edger,k);
                 }
             }
             if(d==1)
@@ -133,6 +129,9 @@ void main()
     scanf("%d",&M);
     int edge[M][3];
     int adj[N+1][N+1];
+    int v[N+1];
+    for(i=0;i<N+1;i++)
+        v[i]=0;
     printf("\n Enter edges with its cost(2 vertices and cost)");
     for(i=0;i<M;i++)
     {
@@ -150,7 +149,7 @@ void main()
         printf("\n");
     }
     int k;
-    k=kruskal(edge,M,N,res,edger);
+    k=kruskal(edge,M,N,res,edger,v);
     printf("\n Minimum cost spanning tree:");
     printf("\nv1 v2 cost\n");
     for(i=0;i<N-1;i++)
