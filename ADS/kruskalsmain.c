@@ -12,9 +12,34 @@ int pop()
 int check(int e,int v[],int n)
 {
     if(v[e]==1)
-        return 0;
+        return 0;//if visited
     else
         return 1;
+}
+int unvisited(int e,int edger[][3],int k,int v[],int n)
+{
+    int i;
+    for(i=0;i<k;i++)
+    {
+        if(edger[i][0]==e || edger[i][1]==e)
+        {
+            if(edger[i][0]==e)
+            {
+                if(check(edger[i][1],v,n))//return 1 if unvisited
+                {
+                    return 1;//return 1 if it has unvisited nodes
+                }
+            }
+            else
+            {
+                if(check(edger[i][0],v,n))
+                {
+                    return 1;//return 1 if it has unvisited nodes
+                }
+            }
+        }
+    }
+    return 0;//return 0 if it has all visited nodes
 }
 void adj(int start,int edger[][3],int k,int v[],int n)
 {
@@ -55,7 +80,7 @@ void adj(int start,int edger[][3],int k,int v[],int n)
 }
 int kruskal(int edge[][3],int m,int n,int res[][n+1],int edger[][3],int v[])
 {
-    int i,j,temp1;
+    int i,j,temp1,z;
     for(i=0;i<m-1;i++)
     {
         for(j=i+1;j<m;j++)
@@ -82,8 +107,10 @@ int kruskal(int edge[][3],int m,int n,int res[][n+1],int edger[][3],int v[])
     for(i=0,k=0;i<m;i++)
     {
         top=-1;
-        for(i=0;i<n+1;i++)
-            v[i]=0;
+        for(z=0;z<n+1;z++)
+        {
+            v[z]=0;
+        }
         x=edge[i][0];
         y=edge[i][1];
         c=edge[i][2];
@@ -98,16 +125,20 @@ int kruskal(int edge[][3],int m,int n,int res[][n+1],int edger[][3],int v[])
             while(top>=0)
             {
                 start=pop();
-                adj(start,edger,k,v,n);
                 if(start==end)
                 {
                     d=1;
                     break;
                 }
+                if(unvisited(start,edger,k,v,n))//try by returning unvisited node from that fn 
+                {
+                    adj(start,edger,k,v,n);
+                }
             }
             if(d==1)
                 continue;
         }
+       
         res[x][y]=c;
         res[y][x]=c;
 

@@ -19,6 +19,31 @@ int check(int e)
     }
     return 1;
 }
+int unvisited(int e,int edger[][3],int k)
+{
+    int i;
+    for(i=0;i<k;i++)
+    {
+        if(edger[i][0]==e || edger[i][1]==e)
+        {
+            if(edger[i][0]==e)
+            {
+                if(check(edger[i][1]))
+                {
+                    return 0;//return 0 if it has visited nodes
+                }
+            }
+            else
+            {
+                if(check(edger[i][0]))
+                {
+                    return 0;//return 0 if it has visited nodes
+                }
+            }
+        }
+    }
+    return 1;//return 0 if it has unvisited nodes
+}
 void adj(int start,int edger[][3],int k)
 {
     int i,j;
@@ -79,7 +104,7 @@ int kruskal(int edge[][3],int m,int n,int res[][n+1],int edger[][3])
         for(j=1;j<=n;j++)
             res[i][j]=0;
     int cost=0,x,y,c,a,b,d,k,l;
-    int start,end,e,start2;
+    int start,end,e;
     for(i=0,k=0;i<m;i++)
     {
         top=-1;
@@ -95,17 +120,14 @@ int kruskal(int edge[][3],int m,int n,int res[][n+1],int edger[][3])
             d=0;
             while(top>=0)
             {
-                start2=pop();
-                if(start2==end)
+                start=pop();
+                if(start==end)
                 {
                     d=1;
                     break;
                 }
-                if(top>=0)
+                if(unvisited(start,edger,k))
                 {
-                    start=pop();
-                    push(start2);
-                    push(start);
                     adj(start,edger,k);
                 }
             }
