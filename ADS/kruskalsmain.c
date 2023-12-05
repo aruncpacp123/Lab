@@ -186,7 +186,7 @@ void main()
     for(i=0;i<N-1;i++)
     {
         for(j=0;j<3;j++)
-            printf("%d ",edger[i][j]);
+            printf("%d   ",edger[i][j]);
         printf("\n");
     }
     printf("\n minimum cost=%d",k);
