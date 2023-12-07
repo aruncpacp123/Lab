@@ -23,6 +23,7 @@ void insert_beg()
     struct node * new=create();
     new->data=d;
     new->next=head;
+    head->prev=new;
     new->prev=NULL;
     head=new;
 }

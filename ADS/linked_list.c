@@ -53,7 +53,7 @@ void insert_pos()
         return;
     }
     temp=head;
-    while(i<p)
+    while(i<p )
     {
         temp=temp->next;
         i++;
