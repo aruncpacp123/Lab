@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <?php
+         if(@$_GET['w'])
+        {echo'<script>alert("'.@$_GET['w'].'");</script>';}
+    ?>
+    
 </head>
 <body>
     <h1>WELCOME</h1>
