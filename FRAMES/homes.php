@@ -8,7 +8,9 @@
          if(@$_GET['w'])
         {echo'<script>alert("'.@$_GET['w'].'");</script>';}
     ?>
-    
+    <style>
+        
+    </style>
 </head>
 <body>
     <h1>WELCOME</h1>
