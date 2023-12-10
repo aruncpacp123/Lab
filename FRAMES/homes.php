@@ -11,7 +11,7 @@
     <style>
         h1{
             text-align:center;
-            color: white;
+            color: red;
             font-size:6em;
         }
         img{
@@ -23,6 +23,8 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
+            margin-top:15px;
+            border:10px blue solid;
         }
     </style>
 </head>
