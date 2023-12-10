@@ -37,7 +37,7 @@ if(isset($_POST['mark']))
     if($data)
     {
         echo "<script>alert('Succesfully Inserted');</script>";
-        header("location:semester.php");
+        header("location:semester.php?q=Successfully Inserted");
     }
     else
     {
