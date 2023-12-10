@@ -11,6 +11,7 @@ $dbcon=mysqli_connect("localhost","root","","student");
         table{
             width:40%;
             background-color:antiquewhite;
+            border:4px black solid;
         }
         tr{
             width:4em;
@@ -20,6 +21,7 @@ $dbcon=mysqli_connect("localhost","root","","student");
             height: 2em;
             text-align:center;
             color:red;
+            border:2px black solid;
         }
         select{
             width: 80%;
@@ -34,14 +36,14 @@ $dbcon=mysqli_connect("localhost","root","","student");
             border: 2px rgb(114, 55, 55) solid;
             background-color: rgba(255, 255, 255, 0.377);
             border-radius: 5px;
-            padding-left: 10px;
+            padding-left: 10px; 
         }
         input[type=submit]{
             width: 80%;
             min-height: 2em;
            
             border-radius: 5px;
-            background-color: rgba(255, 255, 255, 0.377);
+            /* background-color: rgba(255, 255, 255, 0.377); */
         }
     </style>
 </head>

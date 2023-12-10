@@ -11,11 +11,12 @@ $dbcon=mysqli_connect("localhost","root","","student");
     ?>
     <style>
         body{
-            margin:auto;
+            background-color: darkgrey;
         }
         table{
             width:40%;
             background-color:antiquewhite;
+            border:4px black solid;
         }
         tr{
             width:4em;
@@ -25,6 +26,7 @@ $dbcon=mysqli_connect("localhost","root","","student");
             height: 2em;
             text-align:center;
             color:red;
+            border:2px black solid;
         }
         select{
             width: 80%;
@@ -158,8 +160,8 @@ $dbcon=mysqli_connect("localhost","root","","student");
             <tr>
                 <td>subject</td>
                 <td>
-                    <select name="subject" id="">
-                        <option value=0>select</option>
+                    <select name="subject" id="" required>
+                        <option value=0 selected disabled>select</option>
                         <?php
                             while($row=mysqli_fetch_assoc($data)){
                                 echo "<option value=".$row['subject_id'].">".$row['subject']."</option>";
