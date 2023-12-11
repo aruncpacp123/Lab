@@ -13,7 +13,7 @@ class time:
             t1.seconds=t1.seconds%60
             t1.hours=self.hours+other.hours
             if(t1.minutes>=60):
-                t1.hours=t1.hours+t1.seconds//60
+                t1.hours+=int(t1.minutes/60)
                 t1.minutes=t1.minutes%60
         return t1
     

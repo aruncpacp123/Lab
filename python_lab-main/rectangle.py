@@ -12,6 +12,7 @@ class rectangle:
     
 r1=rectangle(2,3)
 r2=rectangle(3,6)
+
 if(r1 < r2):
     print("Area of Rectangle1 is less than Recatngle2")
 else:
