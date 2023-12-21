@@ -1,5 +1,5 @@
 <?php
-$dbcon=mysqli_connect("localhost","root","","student");
+$dbcon=mysqli_connect("localhost","root","","student2");
 ?>
 <head>
     <meta charset="UTF-8">
@@ -133,7 +133,7 @@ $dbcon=mysqli_connect("localhost","root","","student");
     <?php
     if(isset($_POST['click']))
     {
-        $dbcon=mysqli_connect("localhost","root","","student");
+        $dbcon=mysqli_connect("localhost","root","","student2");
         $ktuid=$_POST['ktuid'];
         $sql="select * from registration where ktu_id='$ktuid'";
         $data=mysqli_query($dbcon,$sql);

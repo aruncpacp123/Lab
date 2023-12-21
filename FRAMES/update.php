@@ -1,5 +1,5 @@
 <?php
-$dbcon=mysqli_connect("localhost","root","","student");
+$dbcon=mysqli_connect("localhost","root","","student2");
 ?>
 <!DOCTYPE html>
 <html lang="en">

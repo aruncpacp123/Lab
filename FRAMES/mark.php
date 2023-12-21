@@ -1,5 +1,5 @@
 <?php
-$dbcon=mysqli_connect("localhost","root","","student");
+$dbcon=mysqli_connect("localhost","root","","student2");
 $ktuid=$_POST['ktuid'];
 $sql="select * from registration where ktu_id='$ktuid'";
 $data=mysqli_query($dbcon,$sql);
