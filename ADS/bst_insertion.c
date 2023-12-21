@@ -254,7 +254,7 @@ void main()
                     break;
                 }
                 k=search(root,a,NULL);
-                k=NULL;
+                //k=NULL;
                 if(k!=NULL)
                     printf("\n %d is presented",k->data);
                 else   
