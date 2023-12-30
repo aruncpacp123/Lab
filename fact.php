@@ -1,7 +1,7 @@
 <?php
 $n=$_POST['fact'];
 $fact=1;
-for($i=1;$i<$n;$i++)
+for($i=1;$i<=$n;$i++)
     $fact*=$i;
 ?>
 <!DOCTYPE html>

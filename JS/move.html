@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+           max-width: 500px;
+           
+        }
+    </style>
+    <script>
+        function change(a)
+        {
+            if(a==2)
+                document.getElementById('im').src='../images/pc2.jpg';
+            else
+                document.getElementById('im').src='../images/pc1.jpg';  
+        }
+        function change2(a){
+            if(a==1)
+                document.getElementById('p').innerHTML="Mouse Entered";
+            else
+                document.getElementById('p').innerHTML="Previous content";
+
+        }
+    </script>
+</head>
+<body onmousemove="change2(1)">
+    <img src="../images/pc1.jpg" alt="" id ="im" onmousemove="change(2)" onmouseleave="change(1)">
+    <p id="p" onmouseleave="change2(2)">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla pariatur, harum libero maxime expedita consequuntur rem natus et nesciunt repudiandae, id, itaque recusandae enim dolores tenetur odit? Fuga, accusamus ratione?</p>
+</body>
+</html>

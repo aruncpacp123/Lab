@@ -22,7 +22,7 @@
         function change()
         {
             const random="#"+Math.floor(Math.random()*12345689).toString(10);
-            document.getElementById('a').style.color=random;
+            document.getElementById('body').style.background=random;
         }
         function display()
         {
@@ -38,7 +38,7 @@
         }
     </script>
 </head>
-<body>
+<body id="body">
     <p id="a">This is a paragraph</p>
     <button onclick="document.getElementById('a').innerHTML='Button is clicked'">Click here</button>
     <br><br><br>
