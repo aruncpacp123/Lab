@@ -36,6 +36,7 @@
     background-color:white;
     overflow-x:hidden;
     overflow-y:auto;
+    margin-top:100px;
     /*overflow:scroll;*/
 }
 h1{
@@ -86,6 +87,7 @@ input[type=text]{
    border-radius:50px;
    box-sizing: border-box;
    background-color: rgb(231, 229, 229);
+   color:black;
  }
  input[type=date]{
    width: 100%;
@@ -94,6 +96,7 @@ input[type=text]{
    border-radius:50px;
    box-sizing: border-box;
    background-color: rgb(231, 229, 229);
+   color:black;
  }
  input[type=email]{
    width: 100%;
@@ -102,6 +105,7 @@ input[type=text]{
    border-radius:50px;
    box-sizing: border-box;
    background-color: rgb(231, 229, 229);
+   color:black;
  }
  input[type=password]{
    width: 100%;
@@ -110,6 +114,7 @@ input[type=text]{
    border-radius:50px;
    box-sizing: border-box;
    background-color: rgb(231, 229, 229);
+   color:black;
  }
  input[type=submit]{
    width: 100%;
@@ -125,6 +130,10 @@ input[type=text]{
    border-radius:50px;
    box-sizing: border-box;
    background-color: rgb(231, 229, 229);
+   color:black;
+}
+::placeholder{
+    color:black;
 }
 
     </style>
@@ -165,38 +174,37 @@ function course4(){
     <div class="div1">
         <form action="script.php" method="post" name="studentsignupform">
         <div class="top1">
-            <h1><strong>Sign Up</strong></h1>
+            <h1><strong>FORGOT PASSWORD</strong></h1>
             
             <div id="line"></div>
         </div>
         <div class="top2">
-            <label for="inp1"><h5>Name</h5></label>
-            <input type="text" id="inp1" placeholder="Enter Name.." name="studname" class="text"></input>
-        </div>
-        <div class="top2">
             <label for="inp4"><h5>Email</h5></label>
-            <input type="email" id="inp4" placeholder="Enter Email" name="studemail"></input>
+            <input type="email" id="inp4" placeholder="Enter Email" name="email"></input>
         </div>
         <div class="top2">
             <label for="inp4"><h5>Phone number</h5></label>
-            <input type="text" id="inp4" placeholder="Enter Phone number" name="studphone"></input>
+            <input type="text" id="inp4" placeholder="Enter Phone number" name="phone"></input>
         </div>
-       
+        <div class="top2">
+            <label for="inp5"><h5>USER</h5></label>
+            <select name="user" id="">
+                <option value="0">Select</option>
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+            </select>
+        </div>
+        <div class="top2">
+            <label for="inp5"><h5>New Password</h5></label>
+            <input type="password" id="inp5" placeholder="Enter Password" name="passwd"></input>
+        </div>
         
-        <div class="top2">
-            <label for="inp5"><h5>Password</h5></label>
-            <input type="password" id="inp5" placeholder="Enter Password" name="studpasswd"></input>
-        </div>
-        <div class="top2">
-            <label for="inp5"><h5> Retype Password</h5></label>
-            <input type="password" id="inp5" placeholder="Enter Password" name=""></input>
-        </div>
         <div class="top1">
             <div id="line"></div><br>
-            <input type="submit" value="Register" name="signup">
+            <input type="submit" value="SUBMIT" name="passbtn">
         </div>
     </form>
-    <button style="background-color:inherit;margin-left: 10px;margin-top: 5px;margin-bottom: 5px;"><a href="Index.php" style="text-decoration:none;color:inherit;">back</a></button>
+    <button style="background-color:inherit;margin-left: 10px;margin-top: 5px;margin-bottom: 5px;color:black;"><a href="home.php" style="text-decoration:none;color:inherit;">back</a></button>
 
     </div>
 </body>

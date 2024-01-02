@@ -4,14 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script>
-        document.getElementById("btn").addEventListener("click", colorchange);
-        function colorchange() {
-            console.log(Math.random() * 10000000);
-            var color = '#' + Math.floor(Math.random() * 10000000).toString(16);
-            document.body.style.background = color;
-        }
-    </script>
+    
 </head>
 <body>
     Enter Your Name :
@@ -19,12 +12,12 @@
     Result:
     <input type="text" id="res" name="res">
     <br><br>
-    <button id="len">Length</button>
-    <button id="len">Replace</button>
-    <button id="len">UpperCase</button>
-    <button id="len">LowerCase</button>
+    <button id="len" onclick="length()">Length</button>
+    <button id="up">UpperCase</button>
+    <button id="low">LowerCase</button>
     <br><br>
     <hr>
+    <input id="btn" type="button" value="Change background" onmouseover="document.getElementById('btn').value='Now Click'">
     <br><br>
     First Name :<input type="text" id="first" name="first"><br><br>
     Last Name  :<input type="text" id="last" name="last"><br><br>
@@ -35,11 +28,100 @@
 
     <br><br>
     <hr>
-    <br><br><br>
+    
+    <br><br>
+    Original :<input type="text" id="orig" name="orig"><br><br>
+    First :<input type="text" id="fir" name="fir"><br><br>
+
+    Second<input type="text" id="sec" name="sec"><br><br>
+    Result<input type="text" id="re" name="re"><br><br>
+    <button id="rep" onclick="replace()">Replace</button>
+    <button id="sub">SubString</button>
+
+
+    <br><br>
+    <hr>
     Floating Point Number<input type="text" id="num" name="num"><br><br>
-    <button id="len">SquareRoot</button>
-    <button id="len">Absolute</button>
-    <button id="len">Ciel</button>
-    <button id="len">Floor</button>
+    Result<input type="text" id="res2" name="res2"><br><br>
+    <button id="sq">SquareRoot</button>
+    <button id="ab">Absolute</button>
+    <button id="ci">Ceil</button>
+    <button id="fl">Floor</button>
+
+
+    <script>
+
+        function length(){
+            var x=document.getElementById('name').value;
+            document.getElementById('res').value=x.length;
+        }
+
+        document.getElementById("up").addEventListener("click", upper);
+        function upper() {
+            var x=document.getElementById('name').value;
+            document.getElementById('res').value=x.toUpperCase()
+        }
+
+
+        document.getElementById("low").addEventListener("click", lower);
+        function lower() {
+            var x=document.getElementById('name').value;
+            document.getElementById('res').value=x.toLowerCase()
+        }
+
+
+        document.getElementById("btn").addEventListener("click", colorchange);
+        function colorchange() {
+            console.log(Math.random() * 10000000);
+            var color = '#' + Math.floor(Math.random() * 10000000).toString(16);
+            document.body.style.background = color;
+        }
+
+
+        document.getElementById("con").addEventListener("click", concatenate);
+        function concatenate() {
+            var x=document.getElementById('first').value;
+            var y=document.getElementById('last').value;
+            document.getElementById('full').value=x.concat(" "+y);
+        }
+         
+        function replace() {
+            
+            var x=document.getElementById('orig').value;
+            var y=document.getElementById('fir').value;
+            var z=document.getElementById('sec').value;
+            document.getElementById('re').value=x.replace(y,z);
+        }
+
+        document.getElementById("sub").addEventListener("click", substr);
+        function substr() {
+            var x=document.getElementById('orig').value;
+            var y=document.getElementById('fir').value;
+            var z=document.getElementById('sec').value;
+            document.getElementById('re').value=x.substr(y,z);
+        }
+
+        document.getElementById("sq").addEventListener("click", square);
+        document.getElementById("ab").addEventListener("click", absolute);
+        document.getElementById("ci").addEventListener("click", ciel);
+        document.getElementById("fl").addEventListener("click", floor);
+
+        function square() {
+            var x=document.getElementById('num').value;
+            document.getElementById('res2').value=Math.sqrt(x)
+        }
+        function absolute() {
+            var x=document.getElementById('num').value;
+            document.getElementById('res2').value=Math.abs(x)
+        }
+        function ciel() {
+            var x=document.getElementById('num').value;
+            document.getElementById('res2').value=Math.ceil(x)
+        }
+        function floor() {
+            var x=document.getElementById('num').value;
+            document.getElementById('res2').value=Math.floor(x)
+        }
+    </script>
 </body>
 </html>

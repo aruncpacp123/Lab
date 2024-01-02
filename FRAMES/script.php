@@ -34,7 +34,7 @@ if(isset($_POST['login']))
             header("location:home.php?w=Wrong Username or Password");
     }
 }
-if(isset($_POST['signup']))
+if(isset($_POST['signup']))//it is from signup.php of LOGIN directory
 {
     $name=$_POST['studname'];
     $email=$_POST['studemail'];
@@ -45,6 +45,34 @@ if(isset($_POST['signup']))
     if($data)
     {
         header("location:login.php?w=Succesfully registered");
+    }
+}
+if(isset($_POST['passbtn']))//it is from signup.php of LOGIN directory
+{
+    $email=$_POST['email'];
+    $phn=$_POST['phone'];
+    $user=$_POST['user'];
+    $password=$_POST['passwd'];
+    if($user=='student'){
+        $sql="select * from registration where email='$email' and phone_no='$phn'";
+    }
+    else{
+        $sql="select * from user where email='$email' and phone='$phn'";
+    }
+    $data=mysqli_query($dbcon,$sql);
+    if(mysqli_num_rows($data)){
+        if($user=='student'){
+            $sql="update registration set password='$password' where email='$email'";
+        }
+        else{
+            $sql="update user set password='$password' where email='$email'";
+        }
+        $data=mysqli_query($dbcon,$sql);
+        header("location:home.php?w=password changed");
+    }
+    else{
+        echo "<script>alert('Email and Phone Number Not Match');</script>";
+        header("location:forgot.php?w=Email and Phone Number Not Match");
     }
 }
 ?>

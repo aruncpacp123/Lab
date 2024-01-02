@@ -55,10 +55,10 @@
                 </form>
                 <div class="login_bottom">
                     <div class="login_bottom_text">
-                         <a href="signup.php"><h5>Sign Up</h5></a>
+                         <a href="student_reg.php?q=signup"><h5>Sign Up</h5></a>
                     </div>
                     <div class="login_bottom_text">
-                        <a href=""><h5>Forgot Password?</h5></a>
+                        <a href="forgot.php"><h5>Forgot Password?</h5></a>
                     </div>
                 </div>
             </div>

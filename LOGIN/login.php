@@ -23,7 +23,7 @@
             <div class="loginright">
                 <form method="post" action="script.php?q=index.php" class="form1">
                     <div class="top1">
-                    <div class="loginh1">
+                        <div class="loginh1">
                             <div class="letter">L</div>
                             <div class="letter">O</div>
                             <div class="letter">G</div>

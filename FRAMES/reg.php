@@ -11,16 +11,35 @@ if(isset($_POST['submitted']))
     $add=$_POST['address'];
     $pno=$_POST['phno'];
     $email=$_POST['email'];
-    $sql="insert into registration values('$ktu','$roll','$name','$gender','$age','$sem','$add','$pno','$email','$ktu')";
+    $sql="select * from registration where ktu_id='$ktu'";
     $data=mysqli_query($dbcon,$sql);
-    if($data)
-    {
-        echo "<script>alert('Succesfully Inserted');</script>";
-        header("location:homes.php");
+    $sql2="select * from registration where email='$email'";
+    $data2=mysqli_query($dbcon,$sql2);
+    if(mysqli_num_rows($data)){
+        //echo "<script>alert('KTU ID Already Exists!!!');</script>";
+        header("location:student_reg.php?w=KTU ID Already Exists!!!");
     }
-    else
-    {
-        echo "<script>alert('Some Error Occured');</script>";
+    else if(mysqli_num_rows($data2)){
+        //echo "<script>alert('Email Already Exists');</script>";
+        header("location:student_reg.php?w=Email Already Exists!!!");
+    }
+    else{
+        $sql="insert into registration values('$ktu','$roll','$name','$gender','$age','$sem','$add','$pno','$email','$ktu')";
+        $data=mysqli_query($dbcon,$sql);
+        if($data)
+        {
+            if(@$_GET['q']=='signup'){//if loaded via own registration of student
+                header("location:home.php?w=successfully Registered( Password is your KTU Id)");
+            }
+            else{
+            echo "<script>alert('Succesfully Inserted');</scrip>";
+            header("location:homes.php");//if loaded via teacher registration of student
+            }
+        }
+        else
+        {
+            echo "<script>alert('Some Error Occured');</script>";
+        }
     }
 }
 if(isset($_POST['mark']))

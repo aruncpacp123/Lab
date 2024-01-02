@@ -124,10 +124,22 @@
             background-color: blanchedalmond;
         }
     </style>
+     <?php if(@$_GET['w'])
+            {echo'<script>alert("'.@$_GET['w'].'");</script>';}
+        ?>
 </head>
 <body>
+    <?php
+        if(@$_GET['q'])
+        {
+            $sign=@$_GET['q'];//it will have value if this page is loaded via login.php link
+        }
+        else{
+            $sign='';//it will blank if this page is loaded via teacher student add link
+        }
+    ?>
     <div class="sdiv1">
-        <form action="reg.php" method="post">
+        <form action="reg.php?q=<?=$sign?>" method="post">
             <h2>STUDENT REGISTRATION</h2>
             <div class="sdiv2"></div>
 
